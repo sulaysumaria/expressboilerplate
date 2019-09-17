@@ -4,9 +4,9 @@ Boilerplate for NodeJS + Express + MongoDB + Mongoose
 
 ## Tech Stack
 
-Node - 10.16.3
-NPM - 6.11.3
-MongoDB - 4.2.0
+- Node - 10.16.3
+- NPM - 6.11.3
+- MongoDB - 4.2.0
 
 ## Key features
 
