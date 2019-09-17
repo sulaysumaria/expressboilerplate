@@ -50,8 +50,7 @@ const SCHEDULES = [
   },
 ];
 
-/** Main function to schedule cron jobs. */
-function schedule() {
+module.exports.schedule = async () => {
   // enable cron jobs only if set true in env file.
   if (ENABLE_CRON) {
     console.log('CRON Jobs enabled.');
@@ -88,16 +87,9 @@ function schedule() {
     // log a message if cron job are disabled.
     logInfo('Not running cron jobs. To enable, set ENABLE_CRON env variable to "true".');
   }
-}
+};
 
-/**
- * Helper to Trigger Cron Job from API
- *
- * @param {String} reference - Cron Job name to trigger
- *
- * @return {Promise<void>}
- */
-function trigger(reference) {
+module.exports.trigger = async (reference) => {
   return new Promise(async (resolve, reject) => {
     try {
       await eval(reference)({});
@@ -106,10 +98,4 @@ function trigger(reference) {
       reject(e);
     }
   });
-}
-
-// export schedule function.
-module.exports = {
-  schedule,
-  trigger,
 };

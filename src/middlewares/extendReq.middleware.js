@@ -13,24 +13,18 @@ module.exports = (req, res, next) => {
 
   res.badRequest = (resPayload) => {
     if (typeof resPayload === 'string') {
-      return res
-          .status(400)
-          .send({statusCode: 400, error: resPayload, message: resPayload});
+      return res.status(400).send({statusCode: 400, error: resPayload, message: resPayload});
     }
 
     const {statusCode = 400, message = 'BAD_REQUEST'} = resPayload;
 
-    return res
-        .status(statusCode)
-        .send({statusCode, message, error: res.__(message)});
+    return res.status(statusCode).send({statusCode, message, error: res.__(message)});
   };
 
   res.internalServerError = (e) => {
     console.log(e);
 
-    return res
-        .status(500)
-        .send({statusCode: 500, message: res.__('SOME_ERROR_OCCURRED')});
+    return res.status(500).send({statusCode: 500, message: res.__('SOME_ERROR_OCCURRED')});
   };
 
   next();

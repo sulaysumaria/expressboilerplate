@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-const {
-  encrypt,
-  generateRandomString,
-  hashString,
-} = require('../helpers/excryption.helper');
+const {encrypt, generateRandomString, hashString} = require('../helpers/excryption.helper');
 
 const User = mongoose.model('user');
 
@@ -12,9 +8,7 @@ module.exports.login = async (req, res) => {
   try {
     const {email, password, deviceId} = req.allParams();
 
-    let user = await User.findOne({email}).select(
-        '-__v -createdAt -updatedAt'
-    );
+    let user = await User.findOne({email}).select('-__v -createdAt -updatedAt');
 
     if (!user) {
       return res.badRequest('INVALID_LOGIN_ATTEMPT');
@@ -29,9 +23,7 @@ module.exports.login = async (req, res) => {
     delete user.salt;
     delete user.password;
 
-    const token = encrypt(
-        JSON.stringify({deviceId, userId: user._id, createdAt: Date.now()})
-    );
+    const token = encrypt(JSON.stringify({deviceId, userId: user._id, createdAt: Date.now()}));
 
     return res.ok({message: 'LOGIN_SUCCESS', user, token});
   } catch (e) {
