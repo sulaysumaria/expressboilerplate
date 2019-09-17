@@ -4,4 +4,5 @@ module.exports = {
   ENCRYPTION_KEY: 'abcdefghijklmnopqrstuvwxyzabcdef',
   FCM_SERVER_KEY: '',
   ENABLE_CRON: true,
+  SENDGRID_API_KEY: '',
 };
