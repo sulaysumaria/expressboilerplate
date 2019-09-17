@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const i18n = require('i18n');
+const morgan = require('morgan');
 
 const {PORT} = require('./config');
 const connectToDb = require('./helpers/connectToDb.helper');
@@ -13,6 +14,8 @@ const extendReq = require('./middlewares/extendReq.middleware');
 module.exports.app = express();
 
 require('./models');
+
+this.app.use(morgan('tiny'));
 
 // body-parser needed to parse form-data bodies
 this.app.use(bodyParser.json({limit: '100mb'}));
