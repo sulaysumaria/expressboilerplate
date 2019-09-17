@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const i18n = require('i18n');
 
 const {PORT} = require('./config');
 const connectToDb = require('./helpers/connectToDb.helper');
@@ -22,6 +23,13 @@ this.app.use(
       parameterLimit: 100000,
     })
 );
+
+i18n.configure({
+  locales: ['en', 'de'],
+  directory: __dirname + '/locales',
+});
+
+this.app.use(i18n.init);
 
 this.app.use(extendReq);
 

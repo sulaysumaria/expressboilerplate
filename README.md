@@ -21,6 +21,9 @@ Boilerplate for NodeJS + Express + MongoDB + Mongoose
     │   ├── connectToDb.helper.js
     │   ├── excryption.helper.js
     │   └── requestValidator.helper.js
+    ├── locales # locales are generated here
+    │   ├── de.json
+    │   └── en.json
     ├── middlewares
     │   └── extendReq.middleware.js
     ├── models
@@ -32,3 +35,9 @@ Boilerplate for NodeJS + Express + MongoDB + Mongoose
     └── validators
         └── auth.validator.js
 ```
+
+## Recommended Tools
+
+- VSCode
+- NoSQL Booster
+- Postman
