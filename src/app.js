@@ -14,7 +14,7 @@ module.exports.app = express();
 
 require('./models');
 
-// bodyParser should be above methodOverride
+// body-parser needed to parse form-data bodies
 this.app.use(bodyParser.json({limit: '100mb'}));
 this.app.use(
     bodyParser.urlencoded({
@@ -24,6 +24,7 @@ this.app.use(
     })
 );
 
+// i18n
 i18n.configure({
   locales: ['en', 'de'],
   directory: __dirname + '/locales',
@@ -31,8 +32,10 @@ i18n.configure({
 
 this.app.use(i18n.init);
 
+// extend req and res
 this.app.use(extendReq);
 
+// load routes
 const router = require('./routes');
 this.app.use('/', router);
 
@@ -44,20 +47,16 @@ this.app.use((req, res, next) => {
   next();
 });
 
-// Compression middleware (should be placed before express.static)
-this.app.use(
-    compression({
-      threshold: 512,
-    })
-);
+// compression responses
+this.app.use(compression({threshold: 512}));
 
-// Enabling CORS for all routes.
+// enabling CORS for all routes.
 this.app.use(cors());
 
-// Static files middleware
+// static files middleware
 this.app.use(`/public`, express.static(path.join(__dirname, '..', 'public')));
 
-// for file upload
+// multer for file upload
 this.app.use(multer().any());
 
 /**
