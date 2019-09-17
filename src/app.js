@@ -67,5 +67,8 @@ module.exports.startServer = async () => {
 
   this.app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
+
+    // schedule cron jobs after server starts.
+    require('./cron').schedule();
   });
 };
