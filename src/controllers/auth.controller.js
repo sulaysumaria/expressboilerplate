@@ -11,11 +11,11 @@ module.exports.login = async (req, res) => {
     let user = await User.findOne({email}).select('-__v -createdAt -updatedAt');
 
     if (!user) {
-      return res.badRequest('INVALID_LOGIN_ATTEMPT');
+      return res.error('INVALID_LOGIN_ATTEMPT');
     }
 
     if (!user.isPasswordValid(password)) {
-      return res.badRequest('INVALID_LOGIN_ATTEMPT');
+      return res.error('INVALID_LOGIN_ATTEMPT');
     }
 
     user = user.toJSON();
@@ -46,7 +46,7 @@ module.exports.register = async (req, res) => {
     const isEmailAvailable = await User.isEmailAvailable(email);
 
     if (!isEmailAvailable) {
-      return res.badRequest('EMAIL_UNAVAILABLE');
+      return res.error('EMAIL_UNAVAILABLE');
     }
 
     const salt = generateRandomString(16);

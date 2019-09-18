@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
     return res.send({statusCode: 200, ...resPayload});
   };
 
-  res.badRequest = (resPayload) => {
+  res.error = (resPayload) => {
     if (typeof resPayload === 'string') {
       return res.status(400).send({statusCode: 400, error: resPayload, message: resPayload});
     }

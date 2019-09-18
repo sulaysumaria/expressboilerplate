@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = new Router();
 
-const requestValidator = require('./../helpers/requestValidator.helper');
+const requestValidator = require('../middlewares/requestValidator.middleware');
 
 const controller = require('./../controllers/auth.controller');
 const validator = require('./../validators/auth.validator');
