@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
 
   res.ok = (resPayload) => {
     if (typeof resPayload === 'string') {
-      return res.send({statusCode: 200, message: res.__(resPayload)});
+      return res.send({statusCode: 200, response: resPayload, message: res.__(resPayload)});
     }
 
     return res.send({statusCode: 200, ...resPayload});
